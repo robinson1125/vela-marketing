@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Brand Colors ── */
+  --color-primary: #1A5C3A;
+  --color-primary-light: #2A7A50;
+  --color-primary-dark: #0F3D26;
+  --color-primary-50: #F0F9F4;
+  --color-primary-100: #DCEFE4;
+
+  --color-accent: #C8963E;
+  --color-accent-light: #E0B35C;
+  --color-accent-dark: #A07A30;
+
+  --color-surface: #FAFAF8;
+  --color-surface-alt: #F5F5F3;
+  --color-dark: #0F0F0E;
+  --color-muted: #6B6B6B;
+  --color-muted-light: #9A9A9A;
+  --color-border: #E8E8E6;
+
+  /* ── Fonts ── */
+  --font-heading: var(--font-inter);
+  --font-body: var(--font-inter);
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+  --shadow-lg: 0 4px 6px rgba(0,0,0,0.05), 0 10px 40px rgba(0,0,0,0.08);
+  --shadow-nav: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+}
+
+:root {
+  --background: #FAFAF8;
+  --foreground: #0F0F0E;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: #1A5C3A20;
+  color: #0F0F0E;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
