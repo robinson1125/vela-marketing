@@ -5,3 +5,4 @@ export const ANNOUNCEMENT = {
   emoji: "🎉",
   link: "#pricing",
 };
+// deploy 1775515149
