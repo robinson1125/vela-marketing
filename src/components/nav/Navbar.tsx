@@ -87,7 +87,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-white z-40 px-5 pt-6 pb-8 flex flex-col">
+        <div className="md:hidden fixed inset-0 top-16 bg-white z-40 px-5 pt-6 pb-8 flex flex-col shadow-xl" style={{ backgroundColor: "#ffffff" }}>
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
