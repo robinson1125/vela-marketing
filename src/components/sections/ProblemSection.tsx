@@ -14,7 +14,7 @@ const PAIN_POINTS = [
   {
     icon: Smartphone,
     title: "Your brand, their platform",
-    body: "Your patients download an app that looks and feels like the software vendor, not your clinic. Your brand identity disappears behind someone else&apos;s logo and design.",
+    body: "Your patients download an app that looks and feels like the software vendor, not your clinic. Your brand identity disappears behind someone else's logo and design.",
     iconBg: "bg-amber-50",
     iconColor: "text-amber-600",
   },
