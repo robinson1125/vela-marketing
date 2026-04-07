@@ -90,7 +90,7 @@ const FAQS = [
     a: "Yes, they download the Vela Reward app from the App Store or Google Play. Your clinic branding appears the moment they join using your unique clinic code.",
   },
   {
-    q: "Can I import my patients from RepeatMD?",
+    q: "Can I import my patients from another platform?",
     a: "We provide a CSV import tool that brings your patient list into Vela Reward. Loyalty history cannot be transferred, but you can grant existing patients a welcome bonus to ease the transition.",
   },
   {

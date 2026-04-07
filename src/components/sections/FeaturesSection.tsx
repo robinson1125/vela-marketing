@@ -17,7 +17,7 @@ const FEATURES: Feature[] = [
   {
     eyebrow: "Loyalty",
     title: "Earn points on every dollar — not just clinic visits",
-    body: "RepeatMD only rewards patients when they visit. Vela Reward rewards every dollar spent — in the app, at checkout, on subscriptions. Plus bonus points for birthdays, referrals, and milestone achievements.",
+    body: "Most loyalty platforms only reward patients when they visit. Vela Reward rewards every dollar spent — in the app, at checkout, on subscriptions. Plus bonus points for birthdays, referrals, and milestone achievements.",
     icon: Trophy,
     iconBg: "bg-amber-50",
     iconColor: "text-amber-600",
@@ -205,7 +205,7 @@ const FEATURES: Feature[] = [
                 <div className="h-2 bg-gray-200 rounded w-1/2" />
                 <div className="h-6 bg-gray-200 rounded mt-2" />
               </div>
-              <p className="text-[8px] text-center text-red-400 font-medium pb-2">RepeatMD branding</p>
+              <p className="text-[8px] text-center text-red-400 font-medium pb-2">Vendor branding</p>
             </div>
             {/* Branded */}
             <div className="rounded-xl border-2 border-primary overflow-hidden">
@@ -232,7 +232,7 @@ export default function FeaturesSection() {
         <AnimateIn className="text-center max-w-3xl mx-auto mb-16">
           <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">The complete platform</p>
           <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold leading-tight tracking-tight text-dark mb-4">
-            Everything RepeatMD has. Everything it doesn&apos;t.
+            Everything you need. Nothing you don&apos;t.
           </h2>
           <p className="text-lg text-muted leading-relaxed">
             Built from scratch by a clinic owner who was tired of paying for a platform

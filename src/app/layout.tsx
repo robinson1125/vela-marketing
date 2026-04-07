@@ -14,12 +14,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Vela Reward — The RepeatMD Alternative for Medical Aesthetics Clinics",
+  title: "Vela Reward — The Loyalty Platform for Medical Aesthetics Clinics",
   description:
     "The loyalty and commerce platform built for medical aesthetics clinics. No revenue sharing. Flat monthly pricing. Flash sales, QR checkout, GHL integration, memberships, and more. Start free for 30 days.",
   metadataBase: new URL("https://velareward.com"),
   openGraph: {
-    title: "Vela Reward — The RepeatMD Alternative for Medical Aesthetics Clinics",
+    title: "Vela Reward — The Loyalty Platform for Medical Aesthetics Clinics",
     description:
       "No revenue sharing. Flat monthly pricing. Flash sales, QR checkout, GHL integration, memberships, and more.",
     url: "https://velareward.com",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vela Reward — The RepeatMD Alternative",
+    title: "Vela Reward — The Loyalty Platform for Medical Aesthetics",
     description: "The loyalty platform medical aesthetics clinics actually want to use.",
   },
   robots: { index: true, follow: true },

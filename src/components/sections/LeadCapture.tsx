@@ -117,7 +117,7 @@ export default function LeadCapture() {
             Ready to stop sharing your revenue?
           </h2>
           <p className="text-lg text-primary-100/70 max-w-2xl mx-auto">
-            Join the growing number of clinics that switched from RepeatMD to Vela Reward.
+            Join the growing number of clinics that chose Vela Reward.
             Start your free 30-day trial today — no credit card required.
           </p>
         </AnimateIn>

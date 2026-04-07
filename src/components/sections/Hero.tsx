@@ -26,7 +26,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-50 border border-primary-100 mb-6"
           >
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">The RepeatMD Alternative</span>
+            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Built for Medical Aesthetics</span>
           </motion.div>
 
           {/* Headline */}

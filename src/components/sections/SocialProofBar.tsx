@@ -21,7 +21,7 @@ export default function SocialProofBar() {
       <div className="max-w-7xl mx-auto px-5">
         <AnimateIn>
           <p className="text-center text-sm text-muted-light mb-5">
-            Replacing RepeatMD at clinics across the country
+            Trusted by medical aesthetics clinics across the country
           </p>
         </AnimateIn>
 

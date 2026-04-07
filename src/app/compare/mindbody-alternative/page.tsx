@@ -98,9 +98,9 @@ export default function MindbodyAlternativePage() {
       <section className="py-16 bg-surface">
         <div className="max-w-3xl mx-auto px-5 text-center">
           <p className="text-lg text-muted leading-relaxed">
-            Vela Reward was built by a clinic owner who tried Mindbody, RepeatMD, and
-            everything in between. We know what medical aesthetics clinics actually need
-            because we are one.
+            Vela Reward was built by a clinic owner who tried Mindbody and everything
+            in between. We know what medical aesthetics clinics actually need because
+            we are one.
           </p>
         </div>
       </section>
