@@ -87,34 +87,55 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden fixed inset-0 top-16 bg-white z-40 px-5 pt-6 pb-8 flex flex-col shadow-xl" style={{ backgroundColor: "#ffffff" }}>
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-lg font-medium text-dark py-3 border-b border-border"
-              >
-                {link.label}
-              </Link>
-            ))}
+        <div
+          className="md:hidden fixed inset-0 z-[60] flex flex-col shadow-lg overflow-y-auto"
+          style={{ backgroundColor: "#ffffff" }}
+        >
+          {/* Top bar with logo + close */}
+          <div className="flex items-center justify-between h-16 px-5 border-b border-border bg-white">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-1.5">
+              <span className="text-xl font-extrabold tracking-tight text-dark">Vela</span>
+              <span className="text-xl font-extrabold tracking-tight text-primary">Reward</span>
+            </Link>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="p-2 -mr-2 text-dark"
+              aria-label="Close menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
-          <div className="mt-8 flex flex-col gap-3">
-            <a
-              href="https://app.velareward.com/login"
-              className="text-center text-sm font-medium text-muted border border-border rounded-lg py-3 hover:bg-surface-alt transition-colors"
-            >
-              Sign In
-            </a>
-            <a
-              href="#lead-form"
-              onClick={() => setMobileOpen(false)}
-              className="text-center text-sm font-semibold text-white bg-primary hover:bg-primary-light rounded-lg py-3 transition-colors"
-            >
-              Start Free Trial
-            </a>
+          <div className="flex-1 px-5 pt-6 pb-8 bg-white">
+            <div className="flex flex-col gap-1">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-lg font-medium text-dark py-3 border-b border-border"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3">
+              <a
+                href="https://app.velareward.com/login"
+                onClick={() => setMobileOpen(false)}
+                className="text-center text-sm font-medium text-muted border border-border rounded-lg py-3 hover:bg-surface-alt transition-colors"
+              >
+                Sign In
+              </a>
+              <a
+                href="#lead-form"
+                onClick={() => setMobileOpen(false)}
+                className="text-center text-sm font-semibold text-white bg-primary hover:bg-primary-light rounded-lg py-3 transition-colors"
+              >
+                Start Free Trial
+              </a>
+            </div>
           </div>
         </div>
       )}
