@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Smartphone, Gift, Sparkles, Apple } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 interface Clinic {
   name: string;
@@ -15,16 +16,15 @@ interface Clinic {
 
 interface Props {
   slug: string;
-  clinic: Clinic;
 }
 
 const APP_STORE_URL = "https://apps.apple.com/app/vela-reward/id0000000000";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.prosperhealth.app";
 
-export default function JoinClient({ slug, clinic }: Props) {
+export default function JoinClient({ slug }: Props) {
+  const [clinic, setClinic] = useState<Clinic | null>(null);
+  const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState<"ios" | "android" | "other">("other");
-  const primary = clinic.primary_color || "#8B5CF6";
-  const secondary = clinic.secondary_color || "#FFFFFF";
 
   useEffect(() => {
     const ua = navigator.userAgent || "";
@@ -32,23 +32,56 @@ export default function JoinClient({ slug, clinic }: Props) {
     else if (/Android/i.test(ua)) setPlatform("android");
   }, []);
 
+  useEffect(() => {
+    async function fetchClinic() {
+      const { data } = await supabase
+        .from("clinics")
+        .select("name, app_name, primary_color, secondary_color, logo_url, hero_headline, hero_subheadline")
+        .eq("slug", slug)
+        .maybeSingle();
+      setClinic(data);
+      setLoading(false);
+    }
+    fetchClinic();
+  }, [slug]);
+
+  // Fall back to generic Vela branding if clinic lookup fails
+  const displayClinic: Clinic = clinic || {
+    name: "Vela Reward",
+    app_name: null,
+    primary_color: "#8B5CF6",
+    secondary_color: "#FFFFFF",
+    logo_url: null,
+    hero_headline: null,
+    hero_subheadline: null,
+  };
+
+  const primary = displayClinic.primary_color || "#8B5CF6";
+  const secondary = displayClinic.secondary_color || "#FFFFFF";
+
   function openApp() {
-    // Try the deep link — if app is installed it opens, otherwise nothing happens
     const deepLink = `velareward://join/${slug}`;
     window.location.href = deepLink;
-
-    // After 1.5 seconds, if we are still here, send to the app store
     setTimeout(() => {
       if (platform === "ios") window.location.href = APP_STORE_URL;
       else if (platform === "android") window.location.href = PLAY_STORE_URL;
     }, 1500);
   }
 
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-900" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: primary }}>
       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12 max-w-md mx-auto w-full text-center">
-        {clinic.logo_url ? (
-          <img src={clinic.logo_url} alt={clinic.name} className="w-24 h-24 rounded-2xl object-contain bg-white p-2 mb-6 shadow-lg" />
+        {displayClinic.logo_url ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={displayClinic.logo_url} alt={displayClinic.name} className="w-24 h-24 rounded-2xl object-contain bg-white p-2 mb-6 shadow-lg" />
         ) : (
           <div className="w-24 h-24 rounded-2xl flex items-center justify-center mb-6 shadow-lg" style={{ backgroundColor: secondary }}>
             <Sparkles className="w-12 h-12" style={{ color: primary }} />
@@ -56,10 +89,10 @@ export default function JoinClient({ slug, clinic }: Props) {
         )}
 
         <h1 className="text-3xl sm:text-4xl font-extrabold mb-3" style={{ color: secondary }}>
-          Welcome to {clinic.name}
+          Welcome to {displayClinic.name}
         </h1>
         <p className="text-lg mb-10 opacity-90" style={{ color: secondary }}>
-          {clinic.hero_subheadline || "Earn rewards every time you visit. Tap below to get the app and start earning."}
+          {displayClinic.hero_subheadline || "Earn rewards every time you visit. Tap below to get the app and start earning."}
         </p>
 
         <button
@@ -88,13 +121,13 @@ export default function JoinClient({ slug, clinic }: Props) {
         </div>
 
         <div className="mt-10 space-y-3 text-left w-full">
-          <Perk color={secondary} icon={<Gift className="w-4 h-4" style={{ color: primary }} />}>
+          <Perk color={secondary} primary={primary} icon={<Gift className="w-4 h-4" style={{ color: primary }} />}>
             Earn points on every treatment and purchase
           </Perk>
-          <Perk color={secondary} icon={<Sparkles className="w-4 h-4" style={{ color: primary }} />}>
+          <Perk color={secondary} primary={primary} icon={<Sparkles className="w-4 h-4" style={{ color: primary }} />}>
             Exclusive flash sales and member pricing
           </Perk>
-          <Perk color={secondary} icon={<Smartphone className="w-4 h-4" style={{ color: primary }} />}>
+          <Perk color={secondary} primary={primary} icon={<Smartphone className="w-4 h-4" style={{ color: primary }} />}>
             Tap-to-pay checkout with Apple Pay
           </Perk>
         </div>
@@ -107,7 +140,7 @@ export default function JoinClient({ slug, clinic }: Props) {
   );
 }
 
-function Perk({ icon, children, color }: { icon: React.ReactNode; children: React.ReactNode; color: string }) {
+function Perk({ icon, children, color }: { icon: React.ReactNode; children: React.ReactNode; color: string; primary: string }) {
   return (
     <div className="flex items-center gap-3">
       <div className="w-7 h-7 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: color }}>
