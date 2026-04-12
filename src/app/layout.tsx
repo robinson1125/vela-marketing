@@ -89,6 +89,13 @@ export default function RootLayout({
         <div className="flex-1">{children}</div>
         <Footer />
         <Analytics />
+        <script
+          src="/vela-booking.js"
+          data-clinic="amora-aesthetics"
+          data-button-color="#3152ec"
+          data-button-text="Book a Demo"
+          async
+        />
       </body>
     </html>
   );
