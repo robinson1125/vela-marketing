@@ -94,6 +94,16 @@ export default function RootLayout({
           data-clinic="amora-aesthetics"
           data-button-color="#3152ec"
           data-button-text="Book a Demo"
+          data-position="bottom-right"
+          async
+        />
+        <script
+          src="/vela-chat.js"
+          data-clinic-id="25905d87-2df9-407b-aa11-5ef5c4eff1ab"
+          data-color="#3152ec"
+          data-title="Chat with Amora"
+          data-greeting="Hi there! 👋 How can we help you today?"
+          data-position="bottom-left"
           async
         />
       </body>
