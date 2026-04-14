@@ -88,8 +88,10 @@
       <div class="vc-greeting">' + escHtml(greeting) + '</div>\
     </div>\
     <div class="vc-info" id="vc-info">\
-      <input id="vc-name" placeholder="Your name (optional)" />\
-      <input id="vc-email" type="email" placeholder="Email (optional — for follow-up)" />\
+      <p style="font-size:12px;font-weight:600;color:#374151;margin:0 0 8px">Before we chat, tell us who you are:</p>\
+      <input id="vc-fname" placeholder="First name *" required />\
+      <input id="vc-lname" placeholder="Last name *" required />\
+      <input id="vc-email" type="email" placeholder="Email *" required />\
       <p>We typically respond within minutes during business hours.</p>\
     </div>\
     <div class="vc-compose">\
@@ -102,7 +104,8 @@
   var msgsEl = document.getElementById('vc-msgs');
   var inputEl = document.getElementById('vc-input');
   var sendBtn = document.getElementById('vc-send');
-  var nameEl = document.getElementById('vc-name');
+  var fnameEl = document.getElementById('vc-fname');
+  var lnameEl = document.getElementById('vc-lname');
   var emailEl = document.getElementById('vc-email');
   var infoEl = document.getElementById('vc-info');
 
@@ -129,15 +132,27 @@
   function sendMessage() {
     var text = inputEl.value.trim();
     if (!text) return;
-    inputEl.value = '';
 
-    // Hide info after first send
-    if (!infoHidden) { infoEl.style.display = 'none'; infoHidden = true; }
+    // Require name + email before first message
+    if (!infoHidden) {
+      var fname = fnameEl.value.trim();
+      var lname = lnameEl.value.trim();
+      var email = emailEl.value.trim();
+      if (!fname) { fnameEl.style.borderColor = '#EF4444'; fnameEl.focus(); return; }
+      if (!lname) { lnameEl.style.borderColor = '#EF4444'; lnameEl.focus(); return; }
+      if (!email || email.indexOf('@') < 1) { emailEl.style.borderColor = '#EF4444'; emailEl.focus(); return; }
+      fnameEl.style.borderColor = ''; lnameEl.style.borderColor = ''; emailEl.style.borderColor = '';
+      infoEl.style.display = 'none';
+      infoHidden = true;
+    }
+
+    inputEl.value = '';
 
     appendMessage({ content: text, direction: 'inbound', sender_name: 'You', created_at: new Date().toISOString() });
 
+    var fullName = (fnameEl.value.trim() + ' ' + lnameEl.value.trim()).trim();
     var body = { clinic_id: clinicId, visitor_id: visitorId, content: text };
-    if (nameEl.value.trim()) body.visitor_name = nameEl.value.trim();
+    if (fullName) body.visitor_name = fullName;
     if (emailEl.value.trim()) body.visitor_email = emailEl.value.trim();
 
     fetch(apiHost + '/webchat-send', {
